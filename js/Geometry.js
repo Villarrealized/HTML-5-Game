@@ -16,6 +16,11 @@ var Geometry = (function(Geometry){
 	  return Geometry.normalize(Geometry.directionTo(p1,p2));
 	};
 	
+	Geometry.timeTo = function(p1,p2,speed){
+		var distanceTo = Geometry.distanceTo(p1,p2);
+		return distanceTo/Math.abs(speed);
+	}
+	
 	Geometry.normalize = function(v) {
 	  var mag = Geometry.magnitude(v);
 	  return {x: v.x / mag, y: v.y / mag};

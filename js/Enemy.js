@@ -24,8 +24,6 @@ Enemy.prototype = (function(){
     
     p.vX;//x velocity
     p.vY;//y velocity
-	p.curVX;
-	p.curVY;
 	
 	p.color;
     
@@ -44,11 +42,9 @@ Enemy.prototype = (function(){
 	p.points = 50;//how much it is worth to kill it
 	
 	p.token;
-	
-	p.movement;
+
 	p.isMoving = false;
 	p.movementTime = 0;//for storing how long a certain movement will take
-	p.newRotation;
 	p.wayPoints = [];
 	p.wayPointReached = true;
 
@@ -69,6 +65,7 @@ Enemy.prototype = (function(){
 		//give it a random behavior
 		var rand = Util.Number.randomRange(1,10);
 		switch(rand){//10% chance for each case
+		/*
 				case 1:
 					this.changeBehavior('Wanderer');
 					break;
@@ -84,8 +81,10 @@ Enemy.prototype = (function(){
 				case 7:
 					this.changeBehavior('Sleeper');
 					break;
+					*/
 				default:
-					this.changeBehavior("Static Cannon");
+					//this.changeBehavior("Static Cannon");
+					this.changeBehavior('Tracker');
 		}
 		
         //start off still
@@ -108,6 +107,7 @@ Enemy.prototype = (function(){
 		g.beginStroke('#222');
 		switch(this.subType){
 			case "Tracker":
+				//kite like shape
 				g.moveTo(0,20);
 				g.lineTo(10,0);
 				g.lineTo(0,-10);
@@ -123,12 +123,15 @@ Enemy.prototype = (function(){
 				g.beginStroke('#222');
 				g.drawRoundRectComplex(-8,-8,8,32,4,4,2,2);
 				g.drawRoundRectComplex(10,-8,8,32,4,4,2,2);
-			*/	break;				
+				break;				
+				*/
 				
 			default:
+				//body
 				g.drawCircle(0,0,this.radius);
 				g.beginStroke('rgba(0,0,0,0.3)');
 				g.beginFill('#666');
+				//turret
 				g.drawRoundRectComplex(-4,0,8,25,4,4,2,2);				
 		}
     }
@@ -225,7 +228,7 @@ Enemy.prototype = (function(){
 		}
 
 		//move the enemy depending on its type
-		this.move();
+		this.move();//execute individual AI
 		
 		
         //move by velocity
@@ -515,7 +518,7 @@ Enemy.prototype = (function(){
 	Director.subscribe('restartGame',function(){
 		window.enemies = [];//to store all enemies
 		//create the enemies
-		for(var i=0;i<30;i++){
+		for(var i=0;i<1;i++){
 			var enemy = new Enemy();
 			//place the enemy
 			placeEnemy(enemy);

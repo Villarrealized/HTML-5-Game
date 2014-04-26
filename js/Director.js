@@ -4,9 +4,6 @@
 *@description	The purpose of the Director is to help keep modules from directly interacting with each other as
 *				the very nature of a module directly interacting with another module makes it unmodular.
 *				The Director also handles user input and general functions that relate to the game state.
-*				
-*				The store function, stores the generated token in an array if the storeCopy parameter is true
-*				The get function returns the array that the used tokens are held in
 *
 *@example 		The most common use of the Director is allowing modules to subscribe to and publish events
 *				ex. A player object may call Director.subscribe('restartGame',function(){...}).  The preceding function will be run
@@ -175,7 +172,7 @@ var Director = (function (Director,window, undefined){
 	/************************************************************************************************************************************
 	*@brief			Publish and subscribe to interesting events
 	*
-	*@description	The pub/sub model is very useful for keep modules...well, modular.  It helps keep a module from directly
+	*@description	The pub/sub model is very useful for keeping modules...well, modular.  It helps keep a module from directly
 	*				interacting with another module which is important for being able to disable, remove, or install a module to
 	*				a different interface.
 	*				
